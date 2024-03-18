@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-//use App\Http\Controllers\SecondAuth\SecondAuthenticationController;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
@@ -47,7 +46,7 @@ class AuthenticatedSessionController extends Controller
             if (Auth::validate($credentials)) {
                 $rol = $this->getRolUsuario($request->email);
                 session(['credentials' => $credentials]);
-                if($rol == 1) // En caso de ser rol 2 (Admin) Implementa proceso para segunda auth, la que se encargar de loggearlo o no
+                if($rol == 1) // En caso de ser rol 1 (Admin) Implementa proceso para segunda auth, la que se encargar de loggearlo o no
                 {
                     app()->call([$secondAuth,'generateCodeSecondAuthenticationCode'],['request' => $request]);
                     return redirect()->route('second_auth');
