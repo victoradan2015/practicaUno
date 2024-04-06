@@ -21,11 +21,11 @@ class SecondAuthenticationMiddleware
         //dd('LLega hasta aqui, este es el usuario',$request->user()->email);
         $id_usuario = $this->getIdUsuario($request->user()->email);
         $statusCode = $this->getStatusSecondAuthentication($id_usuario);
-        $idRol = $this->getRolUsuario($id_usuario);
+        $rol_usuario = $this->getRolUsuario($id_usuario);
 
         //dd('status del usuario',$idRol);
         
-        if($idRol == 1 and $statusCode == 0) {
+        if(($rol_usuario == "administrador" || $rol_usuario == "coordinador") and $statusCode == 0) {
             return redirect()->route('second_auth');
             //return $next($request);
         }else{
@@ -42,8 +42,9 @@ class SecondAuthenticationMiddleware
 
     protected function getRolUsuario($id_usuario)
     {
-        $rol = (User::where('id', $id_usuario)->first())->rol;
-        return $rol;
+        $user = (User::where('id', $id_usuario)->first());
+        $rol = $user->getRoleNames()->first(); //En este caso solo traera el primero, el sistema no esta diseniado para varios roles
+        return($rol);
     }
 
     protected function getStatusSecondAuthentication($id_usuario)

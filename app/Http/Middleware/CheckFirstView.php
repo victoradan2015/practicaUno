@@ -16,8 +16,8 @@ class CheckFirstView
     public function handle(Request $request, Closure $next): Response
     {
         if (!$request->session()->has('credentials')) {
-            // Si los campos no están presentes, redirige a la primera vista o maneja el error según tus necesidades
-            return redirect()->route('login')->with('error', 'Primero debes inciiar session.');
+            // Si los campos no están presentes, redirige a la primera vista
+            return redirect()->route('login')->with('error', 'Primero debes inciar session.');
         }
 
         return $next($request);

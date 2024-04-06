@@ -169,6 +169,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         App\Providers\RolViewServiceProvider::class,
+        //Spatie\Permission\PermissionServiceProvider::class,//Para roles y permisos
     ])->toArray(),
 
     /*

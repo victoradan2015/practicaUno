@@ -35,15 +35,22 @@ class RegisteredUserController extends Controller
         $secondAuth = new SecondAuthenticationController();
         $cantidadUsuarios = User::count();
 
-        // Si la cantidad de usuarios es 0, se asigna rol administrador, si no normal
+        /*  Si la cantidad de usuarios es 0, se asigna rol administrador, 
+            si hay 1 (admin) el segundo entra como coordinador,
+            todos los demas usuarios por defecto se crea con rol de invitado
+        */
+        //dd($cantidadUsuarios);
         if ($cantidadUsuarios == 0) {
-            $rol = 1;
-            app()->call([$secondAuth,'generateCodeSecondAuthenticationCode'],['request' => $request]);
-        } else {
-            $rol = 2;
+            $rol_nombre = 'administrador';
+            //app()->call([$secondAuth,'generateCodeSecondAuthenticationCode'],['request' => $request]);
         }
-
-        //dd('el rol es:', $rol);
+        else if ($cantidadUsuarios == 1) {
+            $rol_nombre = 'coordinador';
+            //app()->call([$secondAuth,'generateCodeSecondAuthenticationCode'],['request' => $request]);
+        }
+        else {
+            $rol_nombre = 'invitado';
+        }
 
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -57,8 +64,11 @@ class RegisteredUserController extends Controller
                 'name' => $request->name,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
-                'rol' => $rol,
-            ]); 
+                'rol' => 0,
+            ]);
+            // Despues de crear al usuario le asigno un rol
+            $user->assignRole($rol_nombre);
+
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Ocurrió un error al crear el usuario.');
         }

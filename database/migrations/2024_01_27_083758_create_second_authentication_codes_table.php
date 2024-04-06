@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('code');
             $table->foreignId('id_usuario')->constrained('users');
             $table->boolean('used');
+            $table->integer('tipo');
             $table->timestamps();
         });
     }

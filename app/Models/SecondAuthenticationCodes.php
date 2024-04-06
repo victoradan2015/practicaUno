@@ -13,6 +13,7 @@ class SecondAuthenticationCodes extends Model
         'code',
         'id_usuario',
         'used',
+        'tipo',
     ];
 
     public function user()
