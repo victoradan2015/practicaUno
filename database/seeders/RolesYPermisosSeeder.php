@@ -21,8 +21,8 @@ class RolesYPermisosSeeder extends Seeder
     {
         
         $roleAdmin = Role::create(['name' => 'administrador']);
-        Role::create(['name' => 'coordinador']);
-        Role::create(['name' => 'invitado']);
+        $roleCoordinador = Role::create(['name' => 'coordinador']);
+        $roleInvitado = Role::create(['name' => 'invitado']);
 
         Permission::create(['name' => 'departamentos.view']);
         Permission::create(['name' => 'departamentos.create']);
@@ -39,7 +39,7 @@ class RolesYPermisosSeeder extends Seeder
         Permission::create(['name' => 'role_permissions.edit']);
         Permission::create(['name' => 'role_permissions.delete']);
 
-        //Asigna permisos a rol Administrador
+        //Asigna permisos a rol Administrador, todos los permisos
         $roleAdmin->syncPermissions(
             ['departamentos.view',
             'departamentos.create',
@@ -51,5 +51,29 @@ class RolesYPermisosSeeder extends Seeder
             'empleados.delete',
             'role_permissions.view'
         ]);
+
+        //Crud completo, no toca cosas de configuracion
+        $roleCoordinador->syncPermissions(
+            ['departamentos.view',
+            'departamentos.create',
+            'departamentos.create',
+            'departamentos.delete',
+            'empleados.view',
+            'empleados.create',
+            'empleados.edit',
+            'empleados.delete'
+        ]);
+
+        // Manejo de departamento y empleados solamente (CRUD, no puede eliminar)
+        $roleInvitado->syncPermissions(
+            ['departamentos.view',
+            'departamentos.create',
+            'departamentos.create',
+            'empleados.view',
+            'empleados.create',
+            'empleados.edit',
+        ]);
+
+
     }
 }
