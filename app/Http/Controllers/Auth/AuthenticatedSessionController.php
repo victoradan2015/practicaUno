@@ -38,11 +38,13 @@ class AuthenticatedSessionController extends Controller
         try{
             $secondAuth = new SecondAuthenticationController();
             
+            /*
             $accesoCorrecto = $this->verificaAccesoRol($request);
             //if ( $accesoCorrecto == false ) {
             if ( $accesoCorrecto == true ) {
                 return redirect()->route('login')->with('error', 'Acceso desde lugar incorrecto para tu Rol.');
             }
+            */
 
             $email = $request->input('email');
             $password = $request->input('password');
