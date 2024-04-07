@@ -8,6 +8,7 @@ use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 use App\Models\User;
+use Database\Seeders\RolesYPermisosSeeder;//Seeder
 
 return new class extends Migration
 {
@@ -16,6 +17,8 @@ return new class extends Migration
      */
     public function up(): void
     {
+        $seeder = new RolesYPermisosSeeder(); //Linea para que se seten los roles y permisos recien agregados
+        $seeder->run(); 
         /*
         $role1 = Role::create(['name' => 'admin']);
         $role2 = Role::create(['name' => 'normal']);
