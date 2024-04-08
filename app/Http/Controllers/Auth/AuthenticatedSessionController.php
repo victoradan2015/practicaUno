@@ -88,15 +88,18 @@ class AuthenticatedSessionController extends Controller
         }
         catch (ModelNotFoundException $e)
         {
-            return redirect()->route('login')->with('error', 'Ocurrió un error al guardar los datos. Por favor, inténtalo de nuevo.');
+            abort(400,"error uno");
+            //return redirect()->route('login')->with('error', 'Ocurrió un error al guardar los datos. Por favor, inténtalo de nuevo.');
         }
         catch (ValidationException $e) 
         {
-            return redirect()->route('login')->withErrors($e->errors())->withInput($request->except('password'));
+            abort(400,"error dos");
+            //return redirect()->route('login')->withErrors($e->errors())->withInput($request->except('password'));
         }
         catch (\Exception $e) 
         {
-            return redirect()->route('login')->with('error', 'Ocurrió un error al guardar los datos. Por favor, inténtalo de nuevo.');
+            abort(400,"error tres");
+            //return redirect()->route('login')->with('error', 'Ocurrió un error al guardar los datos. Por favor, inténtalo de nuevo.');
         }
     }
     
