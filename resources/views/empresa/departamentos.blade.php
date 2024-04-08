@@ -31,7 +31,7 @@
                         <td>{{$departamento->descripcion}}</td>
                         <td>
                             <form action="{{ route('departamentos.delete', ['id' => $departamento->id]) }}" method="POST">
-                                <!-- @csrf -->
+                                @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Eliminar</button>
                             </form>

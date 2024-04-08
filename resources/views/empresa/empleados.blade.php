@@ -41,7 +41,7 @@
                         <td>{{$empleado->departamento->nombre}}</td>
                         <td>
                             <form action="{{ route('empleados.delete', ['id' => $empleado->id]) }}" method="POST">
-                                <!-- @csrf -->
+                                @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Eliminar</button>
                             </form>
@@ -65,7 +65,7 @@
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('empleados.create') }}" method="POST">
-                    <!-- @csrf -->
+                    @csrf
                     <div class="form-group">
                         <label for="campo">Nombre:</label>
                         <input type="text" class="form-control" id="nombre" name="nombre">
@@ -116,7 +116,7 @@
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('empleados.update') }}" method="POST">
-                        <!-- @csrf -->
+                        @csrf
                         @method('PUT')
                         <input type="hidden" name="id" id="id_empleado">
                         <div class="form-group">

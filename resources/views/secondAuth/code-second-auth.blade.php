@@ -22,7 +22,7 @@
         <p>Ingresa el código que se te envió a tu correo electrónico</p>
 
         <form method="post" action="{{ route('set_second_auth') }}">
-            <!-- @csrf -->
+            @csrf
 
             <label for="campo">Código:</label>
             <input type="text" id="campo" name="campo" required>
