@@ -36,6 +36,7 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         try{
+            abort(400,"Entra a login");
             $secondAuth = new SecondAuthenticationController();
             
             /*
