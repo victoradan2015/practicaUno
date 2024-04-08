@@ -40,8 +40,7 @@ class AuthenticatedSessionController extends Controller
             
             /*
             $accesoCorrecto = $this->verificaAccesoRol($request);
-            //if ( $accesoCorrecto == false ) {
-            if ( $accesoCorrecto == true ) {
+            if ( $accesoCorrecto == false ) {
                 return redirect()->route('login')->with('error', 'Acceso desde lugar incorrecto para tu Rol.');
             }
             */
@@ -129,11 +128,11 @@ class AuthenticatedSessionController extends Controller
         try {
             $rol = $this->getRolUsuario($request->email);
             $ip_dominio = "trabajadores.store";
-            $ip_vpn_proxi = ""; // vpn del droplet del proxy
+            $ip_vpn_proxi = "10.32.0.6"; // vpn del droplet del proxy
             $ip_acceso = $request->server('HTTP_HOST');
             
             if ( $rol == "administrador" and $ip_acceso == $ip_vpn_proxi or                                     //administrador entra por vpn
-                ($rol == "coordinador" and $ip_acceso == $ip_dominio or $ip_acceso == $ip_vpn_proxi ) or        //coordinador entra por vpn y por dominio
+                ($rol == "coordinador" and ($ip_acceso == $ip_dominio or $ip_acceso == $ip_vpn_proxi) ) or        //coordinador entra por vpn y por dominio
                 $rol == "invitado" and $ip_acceso == $ip_vpn_proxi )                                            //invitado entra por dominio
             {
                 return true;
