@@ -1,6 +1,6 @@
 <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
-        @csrf
+        <!-- @csrf -->
 
         @if ($errors->has('g-recaptcha-response'))
             <span class="help-block">
