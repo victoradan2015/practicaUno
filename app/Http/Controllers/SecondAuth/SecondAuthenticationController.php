@@ -16,7 +16,7 @@ class SecondAuthenticationController extends Controller
     public function generateCodeSecondAuthenticationCode(Request $request, int $tipo){
         
         $secondAuthenticationCode = new SecondAuthenticationCodes();
-        dd("entra modelo secondauth");
+        
         try{
             $id_usuario = $this->getIdUsuario($request->email);
             
@@ -32,7 +32,7 @@ class SecondAuthenticationController extends Controller
                     'tipo' => $tipo,
                 ]
             );
-
+            dd("entra modelo secondauth 2");
             $this->sendLoginCodeEmail($request, $code);
 
         } 
