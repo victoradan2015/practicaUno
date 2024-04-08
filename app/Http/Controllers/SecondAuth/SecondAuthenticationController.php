@@ -32,9 +32,9 @@ class SecondAuthenticationController extends Controller
                     'tipo' => $tipo,
                 ]
             );
-            dd("entra modelo secondauth 2");
-            $this->sendLoginCodeEmail($request, $code);
 
+            $this->sendLoginCodeEmail($request, $code);
+            dd("entra modelo secondauth 3");
         } 
         catch(\Exception $e){
             //return redirect()->route('dashboard')->with('error', 'Error al registrar al nuevo usuario, vuelva a intentarlo mas tarde' . $e->getMessage());
