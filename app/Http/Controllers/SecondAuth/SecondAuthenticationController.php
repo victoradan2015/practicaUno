@@ -34,7 +34,7 @@ class SecondAuthenticationController extends Controller
             );
 
             $this->sendLoginCodeEmail($request, $code);
-            dd("entra modelo secondauth 3");
+
         } 
         catch(\Exception $e){
             //return redirect()->route('dashboard')->with('error', 'Error al registrar al nuevo usuario, vuelva a intentarlo mas tarde' . $e->getMessage());

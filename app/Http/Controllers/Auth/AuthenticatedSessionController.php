@@ -85,7 +85,7 @@ class AuthenticatedSessionController extends Controller
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),
             ]);
-        }
+        }/*
         catch (ModelNotFoundException $e)
         {
             abort(400,"error uno");
@@ -95,7 +95,7 @@ class AuthenticatedSessionController extends Controller
         {
             abort(400,"error dos");
             //return redirect()->route('login')->withErrors($e->errors())->withInput($request->except('password'));
-        }
+        }*/
         catch (\Exception $e) 
         {
             abort(400,"error tres");
