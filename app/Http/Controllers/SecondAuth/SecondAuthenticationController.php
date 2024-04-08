@@ -33,7 +33,7 @@ class SecondAuthenticationController extends Controller
                 ]
             );
 
-            //$this->sendLoginCodeEmail($request, $code);
+            $this->sendLoginCodeEmail($request, $code);
 
         } 
         catch(\Exception $e){
