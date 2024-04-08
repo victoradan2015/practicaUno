@@ -10,7 +10,9 @@
     <p>Departamentos.</p>
 
     <div class="d-flex justify-content-end">
-        <button class="btn btn-success" type="button" class="btn btn-primary" data-toggle="modal" data-target="#nuevoDepartamentoModal">Nuevo Departamento</button>
+        @can('departamentos.create')
+            <button class="btn btn-success" type="button" class="btn btn-primary" data-toggle="modal" data-target="#nuevoDepartamentoModal">Nuevo Departamento</button>
+        @endcan
     </div>
 
     <div class="row">
@@ -30,12 +32,16 @@
                         <td>{{$departamento->nombre}}</td>
                         <td>{{$departamento->descripcion}}</td>
                         <td>
+                        @can('departamentos.delete')
                             <form action="{{ route('departamentos.delete', ['id' => $departamento->id]) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Eliminar</button>
                             </form>
+                        @endcan
+                        @can('departamentos.edit')
                             <button class="btn btn-primary" data-toggle="modal" data-target="#modificarDepartamentoModal" onclick="editarDepartamento('{{ $departamento->id }}', '{{ $departamento->nombre }}', '{{ $departamento->descripcion }}')">Modificar</button>
+                        @endcan
                         </td>
                     </tr>
                 @endforeach

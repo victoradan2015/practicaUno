@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\User;
 
 class RoleController extends Controller
 {
@@ -41,5 +42,11 @@ class RoleController extends Controller
         }
 
         return redirect()->back()->with('success', 'Permisos actualizados exitosamente para los roles.');
+    }
+
+    public function viewListUsers(){
+        $users = User::all();
+
+        return view('configuration.users_role', compact('users'));
     }
 }

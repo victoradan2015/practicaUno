@@ -10,7 +10,9 @@
     <p>Empelados.</p>
 
     <div class="d-flex justify-content-end">
-        <button class="btn btn-success" type="submit" class="btn btn-primary" onclick="editarEmpleado()" data-toggle="modal" data-target="#nuevoEmpleadoModal">Nuevo Empleado</button>
+        @can('empleados.create')
+            <button class="btn btn-success" type="submit" class="btn btn-primary" onclick="editarEmpleado()" data-toggle="modal" data-target="#nuevoEmpleadoModal">Nuevo Empleado</button>
+        @endcan
     </div>
 
     <div class="row">
@@ -40,12 +42,16 @@
                         <td>{{$empleado->sueldo_diario}}</td>
                         <td>{{$empleado->departamento->nombre}}</td>
                         <td>
+                        @can('empleados.delete')
                             <form action="{{ route('empleados.delete', ['id' => $empleado->id]) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Eliminar</button>
                             </form>
+                        @endcan
+                        @can('empleados.delete')
                             <button class="btn btn-primary" data-toggle="modal" data-target="#modificarEmpleadoModal" onclick="editarEmpleado('{{ $empleado->id }}', '{{ $empleado->nombre }}', '{{ $empleado->apellido_paterno }}', '{{ $empleado->apellido_materno }}', '{{ $empleado->numero }}', '{{ $empleado->fecha_nacimiento }}', '{{ $empleado->sueldo_diario }}', '{{ $empleado->departamento->id }}')">Modificar</button>
+                        @endcan
                         </td>
                     </tr>
                 @endforeach

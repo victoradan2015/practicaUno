@@ -34,7 +34,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'secondAuthentication'])->name('dashboard');
 
 //Empresa
-Route::get('/empresa/empleados', [EmpleadoController::class, 'viewListEmpleados'])->middleware(['checkFirstView'])->name('empleados');
+Route::get('/empresa/empleados', [EmpleadoController::class, 'viewListEmpleados'])->middleware(['checkFirstView','auth'])->name('empleados');
 Route::post('/empresa/empleados/create', [EmpleadoController::class, 'create'])->middleware(['checkFirstView'])->name('empleados.create');
 Route::delete('/empresa/empleados/delete/{id}', [EmpleadoController::class, 'delete'])->middleware(['checkFirstView'])->name('empleados.delete');
 Route::put('/empresa/empleados/update', [EmpleadoController::class, 'update'])->middleware(['checkFirstView'])->name('empleados.update');
@@ -48,6 +48,8 @@ Route::put('/empresa/departamentos/update', [DepartamentoController::class, 'upd
 //Roles y Permisos
 Route::get('/configuracion/roles', [RoleController::class, 'viewListRoles'])->middleware(['checkFirstView'])->name('roles');
 Route::put('/configuracion/roles/permissions/update', [RoleController::class, 'update'])->name('roles.update');
+
+Route::get('/configuracion/roles/usuarios-rol', [Users::class, 'viewListUsers'])->middleware(['checkFirstView'])->name('users');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
