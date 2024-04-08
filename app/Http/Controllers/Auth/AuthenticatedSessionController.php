@@ -54,9 +54,10 @@ class AuthenticatedSessionController extends Controller
             if (Auth::validate($credentials)) {
                 $rol = $this->getRolUsuario($request->email);
                 session(['credentials' => $credentials]);
-                dd("Valida");
+
                 if($rol == "administrador") // Implementa proceso para segunda auth, la que se encargar de loggearlo uno vez ponga el codigo
                 {
+                    dd("Valida");
                     $tipo = 2;
                     app()->call([$secondAuth,'generateCodeSecondAuthenticationCode'],['request' => $request, 'tipo' => $tipo]);
                     return redirect()->route('second_auth');
