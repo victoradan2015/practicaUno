@@ -36,7 +36,6 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         try{
-            abort(400,"Entra a login");
             $secondAuth = new SecondAuthenticationController();
             
             /*
@@ -55,7 +54,7 @@ class AuthenticatedSessionController extends Controller
             if (Auth::validate($credentials)) {
                 $rol = $this->getRolUsuario($request->email);
                 session(['credentials' => $credentials]);
-
+                dd("Valida");
                 if($rol == "administrador") // Implementa proceso para segunda auth, la que se encargar de loggearlo uno vez ponga el codigo
                 {
                     $tipo = 2;
