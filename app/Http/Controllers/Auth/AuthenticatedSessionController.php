@@ -97,8 +97,8 @@ class AuthenticatedSessionController extends Controller
         }*/
         catch (\Exception $e) 
         {
-            abort(400,"error tres");
-            //return redirect()->route('login')->with('error', 'Ocurrió un error al guardar los datos. Por favor, inténtalo de nuevo.');
+            //abort(400,"error tres");
+            return redirect()->route('login')->with('error', 'Ocurrió un error al guardar los datos. Por favor, inténtalo de nuevo.');
         }
     }
     
