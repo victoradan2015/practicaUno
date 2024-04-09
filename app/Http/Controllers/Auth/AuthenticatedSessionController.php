@@ -133,7 +133,7 @@ class AuthenticatedSessionController extends Controller
             
             if ( $rol == "administrador" and $ip_acceso == $ip_vpn_proxi or                                     //administrador entra por vpn
                 ($rol == "coordinador" and ($ip_acceso == $ip_dominio or $ip_acceso == $ip_vpn_proxi) ) or        //coordinador entra por vpn y por dominio
-                $rol == "invitado" and $ip_acceso == $ip_vpn_proxi )                                            //invitado entra por dominio
+                $rol == "invitado" and $ip_acceso == $ip_dominio )                                            //invitado entra por dominio
             {
                 return true;
             } else
