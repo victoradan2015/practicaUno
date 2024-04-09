@@ -335,13 +335,13 @@ return [
             'url' => '/configuracion/roles',
             'icon' => 'far fa-fw fa-file',
             'can' => 'role_permissions.view',
-        ],
+        ],/*
         [
             'text' => 'Usuarios y Rol',
             'url' => '/configuracion/roles/usuarios-rol',
             'icon' => 'far fa-fw fa-file',
             'can' => 'role_permissions.view',
-        ],
+        ],*/
         /*
         ['header' => 'account_settings'],
         [
